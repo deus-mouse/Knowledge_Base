@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-import unittest
+import unittests
 
-from family import Child, House
+from family import Child, House, Wife
 
 
 def my_sort(slist):
@@ -22,7 +22,7 @@ def my_sort(slist):
 assert my_sort([3, 2, 1]) == [1, 2, 3]  # simple
 
 
-class MySortTest(unittest.TestCase):
+class MySortTest(unittests.TestCase):
     def test_normal(self):
         result = my_sort([3, 2, 1])
         self.assertEqual(result, [1, 2, 3])
@@ -33,7 +33,7 @@ class MySortTest(unittest.TestCase):
 
 
 
-class ChildTest(unittest.TestCase):
+class ChildTest(unittests.TestCase):
 
     def setUp(self):
         self.sweet_home = House()
@@ -59,7 +59,7 @@ class ChildTest(unittest.TestCase):
         self.assertEqual(self.dasha.fullness, 20)
 
 
-class WifeTest(unittest.TestCase):
+class WifeTest(unittests.TestCase):
 
     def setUp(self):
         self.sweet_home = House()
@@ -84,6 +84,6 @@ class WifeTest(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    unittests.main()
 
 
