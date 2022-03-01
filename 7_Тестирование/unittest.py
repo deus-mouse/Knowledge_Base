@@ -4,6 +4,35 @@ import unittest
 from family import Child, House
 
 
+def my_sort(slist):
+    # '''
+    # >>> my_sort([3, 2, 1])
+    # [1, 2, 3]
+    # '''
+    was_swap = True
+    while was_swap:
+        was_swap = False
+        for i in range(len(slist) - 1):
+            if slist[i] > slist[i + 1]:
+                slist[i], slist[i + 1] = slist[i + 1], slist[i]
+                was_swap = True
+    return slist
+
+
+assert my_sort([3, 2, 1]) == [1, 2, 3]  # simple
+
+
+class MySortTest(unittest.TestCase):
+    def test_normal(self):
+        result = my_sort([3, 2, 1])
+        self.assertEqual(result, [1, 2, 3])
+
+    def test_negative(self):
+        result = my_sort([-3, 2, 1])
+        self.assertEqual(result, [-3, 1, 2])
+
+
+
 class ChildTest(unittest.TestCase):
 
     def setUp(self):
