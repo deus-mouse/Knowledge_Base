@@ -20,7 +20,7 @@ class Fibo_iter:
         self.a, self.b, self.i, self.n = 0, 1, 0, n
 
     def __iter__(self):
-        self.a, self.b, self.i= 0, 1, 0
+        self.a, self.b, self.i = 0, 1, 0
         return self
 
     def __next__(self):

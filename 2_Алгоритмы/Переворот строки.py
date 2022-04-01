@@ -4,6 +4,7 @@ some_string = 'Neuronet Neuronet'
 
 def reverse_string(s):
     chars = list(s)  # разбираем строку на символы
+    print(f'{chars=}')
 
     for i in range(len(s) // 2):
         # до середины

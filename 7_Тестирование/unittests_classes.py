@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-from family import Child, House, Wife
+from helper_for_unittests import Child, House, Wife
 
 
 class ChildTest(unittest.TestCase):

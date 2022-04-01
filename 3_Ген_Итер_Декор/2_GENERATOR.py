@@ -1,5 +1,4 @@
 # ГЕНЕРАТОР
-
 def fibo_func1(n):
     a, b = 0, 1
     for _ in range(n):
@@ -10,8 +9,8 @@ fibo = fibo_func1(100)
 for value in fibo:
     print(value)
 
-#  Бесконечный генератор
 
+#  Бесконечный генератор
 def fibo_func2():
     a, b = 0, 1
     while True:
@@ -24,8 +23,8 @@ for value in fibo2:
     if value > 10 ** 2:
         break
 
-#можно использовать return = raise StopEteration
 
+#можно использовать return = raise StopEteration
 def fibo_func3():
     a, b = 0, 1
     while True:
@@ -40,7 +39,6 @@ for value in fibo3:
 
 
 # можно прерывать несколько вложенных циклов
-
 list_1 = [2, 5, 7, 10]
 list_2 = [3, 8, 4, 9]
 to_find = 56
@@ -56,8 +54,8 @@ for x, y, result in result_func(list_1, list_2):
         print('Found!!!')
         break
 
-# так же может принимать значение
 
+# так же может принимать значение
 def solar_system_func(*args):
     data = list(args)
     while data:
