@@ -20,4 +20,4 @@ def recursion_factorial(n):
         return 1
     return recursion_factorial(n-1) * n
 
-print(recursion_factorial(5))
+print(recursion_factorial(4))

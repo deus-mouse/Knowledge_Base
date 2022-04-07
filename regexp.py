@@ -42,6 +42,8 @@ import re
 # И ознакомимся с его основными функциями:
 # Первая из них match, которая зачастую работает быстрее других фукнций поиска,
 # т.к. ищет совпадения только с начала строки
+nemo_pattern = r'[Nn]em\w{,2}'
+
 matched_at_begin = re.match(nemo_pattern, deep_ocean)
 print(matched_at_begin)     # None
 

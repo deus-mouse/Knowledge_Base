@@ -141,7 +141,6 @@ print('Стало', nums)
 
 
 # Линейный поиск
-
 names = ['Роман', 'Лена', 'Денис', 'Тоня']
 search_for = 'Тоня'
 def linear_search(where, what):
@@ -222,6 +221,7 @@ def reverse_string(s):
 
 print(some_string)
 print(reverse_string(some_string))
+
 
 # Самый быстрый и легкий способ в Python
 print(some_string[::-1])
