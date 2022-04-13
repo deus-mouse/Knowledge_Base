@@ -12,16 +12,15 @@ The next state is created by applying the above rules simultaneously to every ce
 '''
 from collections import defaultdict
 
-board = [[1,1],[1,0]]
+board = [[0,1,0],[0,0,1],[1,1,1],[0,0,0]]
 
 class Solution(object):
 
     def __init__(self):
-        self.neighbors = list()
         self.board = None
 
     def neighbors_finder(self, line_index=None, cell_index=None):
-        if 0 <= line_index <= len(self.board)-1 and  0 <= cell_index <= len(self.board[0])-1:
+        if (0 <= line_index <= len(self.board)-1) and (0 <= cell_index <= len(self.board[0])-1):
             self.neighbors.append(self.board[line_index][cell_index])
 
     def gameOfLife(self, board):
@@ -30,7 +29,7 @@ class Solution(object):
         :rtype: None Do not return anything, modify board in-place instead.
         """
         self.board = board
-        copy_board = board
+        copy_board = board.copy()
         for line_index in range(len(board)):
             for cell_index in range(len(board[0])):
                 self.lives_dict = defaultdict(int)
@@ -45,21 +44,22 @@ class Solution(object):
                 self.neighbors_finder(line_index+1, cell_index-1)
                 self.neighbors_finder(line_index+1, cell_index)
                 self.neighbors_finder(line_index+1, cell_index+1)
+
+                print(self.neighbors)
                 for char in self.neighbors:
                     self.lives_dict[char] += 1
                 lives = self.lives_dict[1]
 
-            if board[line_index][cell_index] == 1:
-                if lives < 2 or lives > 3:
-                    copy_board[line_index][cell_index] = 0
-            else:
-                if lives == 3:
-                    copy_board[line_index][cell_index] = 1
-
-            print(copy_board)
-            return copy_board
+                if board[line_index][cell_index] == 1:
+                    if lives < 2 or lives > 3:
+                        copy_board[line_index][cell_index] = 0
+                else:
+                    if lives == 3:
+                        copy_board[line_index][cell_index] = 1
+        print(f'{board=}')
+        return copy_board
 
 
 
 sol = Solution()
-sol.gameOfLife(board)
+print(sol.gameOfLife(board))

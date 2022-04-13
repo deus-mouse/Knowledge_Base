@@ -1,10 +1,12 @@
-board = [[0,1,0],[0,0,1],[1,1,1],[0,0,4]]
 
+a = [1]
+b = a
 
-print(f'{board[-1]=}')
+print(a is b)
 
-board.append(1, 0, 1)
-print(f'{board=}')
-a = 1
+c = a.copy()
+print(c)
+print(a is c)
 
-print(len())
+a = [2]
+print(f'{c=}')
