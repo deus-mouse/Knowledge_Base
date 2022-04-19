@@ -3,8 +3,8 @@ import helper_for_mock
 
 
 fake_1 = Mock()
-print(fake_1)
-print(fake_1())
+print(f'{fake_1=}')
+print(f'{fake_1()=}')
 print(fake_1(1, 2, 3, test=42))
 print(fake_1.called)  # вызывался ли объект вообще
 print(fake_1(test=42))

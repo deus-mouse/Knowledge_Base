@@ -26,4 +26,5 @@ def parentheseser(output, open, closed, n):
 def foo(n):
     parentheseser('', 0, 0, n)
 
+
 foo(n)
