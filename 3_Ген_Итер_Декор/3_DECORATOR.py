@@ -50,8 +50,8 @@ calculator = time_track_2(calculator)
 result = calculator(2134, 7322, 9586, 8584)
 print(result)
 
-# а можно вообще сделать так
 
+# а можно вообще сделать так
 
 # и теперь digits - почти та же функция, но не та. Она отдекорирована функцией time_track
 # за счет *args, **kwargs внутренняя surrogate принимает все параметры
@@ -67,7 +67,7 @@ def calculator_2(*args):
     return len(str(total))
 
 result = calculator_2(2134, 7322, 9586, 8584)
-print(result)
+print(f'{result=}')
 
 
 

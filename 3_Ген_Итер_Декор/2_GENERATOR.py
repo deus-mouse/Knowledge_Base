@@ -55,6 +55,7 @@ for x, y, result in result_func(list_1, list_2):
         break
 
 
+# Корутина!
 # так же может принимать значение
 def solar_system_func(*args):
     data = list(args)

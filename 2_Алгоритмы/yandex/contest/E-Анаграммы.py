@@ -1,4 +1,4 @@
-'''
+for'''
 E. Анаграммы
 
 Даны две строки, состоящие из строчных латинских букв. 
@@ -22,3 +22,16 @@ def anogrammer(a, b):
     return 1 if str_to_dict(a) == str_to_dict(b) else 0
 
 print(anogrammer(a, b))
+
+
+
+
+n = int(input("input n: "))
+s = str(n)
+l = len(s)
+for i in range(l//2):
+    if s[i] != s[-1-i]:
+       print("It's not palindrome")
+       break
+else:
+    print("It's palindrome")
