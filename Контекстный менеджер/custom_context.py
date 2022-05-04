@@ -1,14 +1,5 @@
 import time
-
-
-def time_track(func, *args):
-    started_at = time.time()
-    result = func(*args)
-    ended_at = time.time()
-    elapsed = round(ended_at - started_at, 4)
-    print(f'Elapsed 2 = {elapsed}')
-    return result
-
+from contextlib import contextmanager
 
 def calculator(*args):
     total = 1
@@ -20,6 +11,7 @@ def calculator(*args):
     return len(str(total))
 
 
+# как класс
 class TimeTrack:
     def __init__(self, *args):
         self.started_at = time.time()
@@ -40,6 +32,20 @@ class TimeTrack:
 
 
 with TimeTrack(2134, 7322, 9586, 8584) as my_time_track:
-    print('---------')
-    # my_time_track()
-    # my_time_track()
+    print('КЛАСС: тут выполняется то, что обернуто')
+
+
+# как функция
+@contextmanager
+def time_track(*args):
+    try:
+        started_at = time.time()
+        yield calculator(*args)
+    finally:
+        ended_at = time.time()
+        elapsed = round(ended_at - started_at, 4)
+        print(f'Elapsed 2 = {elapsed}')
+
+
+with time_track(2134, 7322, 9586, 8584) as my_time_track:
+    print('ФУНКЦИЯ: тут выполняется то, что обернуто')
