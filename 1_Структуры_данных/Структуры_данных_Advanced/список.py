@@ -63,3 +63,9 @@ mylist3 = TypedList(mylist)
 mylist3.append(4)
 print(f'{mylist3=}')
 # mylist3.append('5')  # ValueError: Only one type needed
+
+
+
+# Как преобразовать список списков в список чисел
+a = [[1], [2], [3]]
+lst = [x for l in a for x in l]

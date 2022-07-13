@@ -11,3 +11,7 @@ s.sort(key = (lambda x: x.split(" ")[-1]))
 
 print(s)
 
+
+l = lambda s: s[0] if s else None
+
+print(f'{s=}')
