@@ -1,0 +1,3 @@
+
+Запуск контейнера
+docker build -t myimage code/Knowledge_Base/Docker_practice/medium_conterizaition_python/app/
