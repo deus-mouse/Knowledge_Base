@@ -18,6 +18,6 @@ COPY --from=builder /root/.local/bin /root/.local
 COPY ./src .
 
 # обновление переменной среды PATH
-ENV PATH=/root/.local:$PATH
+#ENV PATH=/root/.local:$PATH
 
 CMD [ "python", "./server.py" ]
