@@ -62,3 +62,6 @@ class Solar_system():
 iter = Solar_system()
 for value in iter:
     print(value)
+
+print(f'{iter=}')
+print(f'{type(iter)=}')
