@@ -9,15 +9,40 @@
 
 
 island = [3, 1, 4, 3, 5, 1, 1, 3, 1]
+island = [3, 1, 12, 3, 5, 1, 1, 20, 1]
 
-def island(island):
-    count = 0
+# мое решение
+def my_island_filler(island):
+    waters = 0
     top_index = 0
-    curr = 0
-    for vertex_index in len(island):
+    for vertex_index in range(0, len(island)):
         if island[vertex_index] > island[top_index]:
             top_index = vertex_index
 
-    curr_index = top_index - 1
-    while curr_index >= 0:
-        if
+    # наполняем слева направо до вершины
+    index_max = 0
+    for index in range(1, top_index):
+        if island[index_max] <= island[index]:
+            index_max = index
+            continue
+        elif island[index_max] > island[index]:
+            points = island[index_max] - island[index]
+            island[index] += points
+            waters += points
+
+    # наполняем справа налево до вершины
+    index_max = len(island) - 1
+    for index in reversed(range(top_index, len(island))):
+        if island[index_max] <= island[index]:
+            index_max = index
+            continue
+        elif island[index_max] > island[index]:
+            points = island[index_max] - island[index]
+            island[index] += points
+            waters += points
+
+    print(f'{island=}')
+    print(f'{waters=}')
+
+
+my_island_filler(island)

@@ -1,42 +1,10 @@
+top_index = 4
+island = [3, 1, 4, 3, 5, 1, 1, 3, 1]
+a = len(island)
 
-seq = [1, 2, 3, 4, 2]
+print(f'{a=}')
 
-def find_x(seq, x):
-    ans = -1
-    for i in range(len(seq)):
-        if ans == -1 and seq[i] == x:
-            ans = i
-    return ans
-
-print(f'{find_x(seq, 2)=}')
-
-def find_x2(seq, x):
-    ans = -1
-    for i in range(len(seq)):
-        if seq[i] == x:
-            return i
-    return ans
-
-print(f'{find_x2(seq, 2)=}')
-
-
-def find_x3(seq, x):
-    ans = -1
-    for i in range(len(seq)):
-        if seq[i] == x:
-            ans = i
-    return ans
-
-print(f'{find_x3(seq, 2)=}')
-
-
-def find_x4(seq, x):
-    ans = -1
-    for i in range(len(seq)):
-        if seq[-i] == x:
-            return len(seq)-i
-    return ans
-
-print(f'{find_x4(seq, 2)=}')
-
+for index in reversed(range(top_index, len(island))):
+    print(f'{index=}')
+    print(f'{island[index]=}')
 
