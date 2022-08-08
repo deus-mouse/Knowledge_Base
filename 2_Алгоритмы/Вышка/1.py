@@ -20,3 +20,14 @@ for index in range(len(data)):
         best = current
 
 print(best)
+
+
+data = [1, 2]
+
+data2 = data
+
+data2[0] = data[1]
+data2[0] = data[1]
+
+
+print(data2)

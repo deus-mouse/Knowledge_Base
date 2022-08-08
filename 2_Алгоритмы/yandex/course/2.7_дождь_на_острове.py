@@ -9,7 +9,9 @@
 
 
 island = [3, 1, 4, 3, 5, 1, 1, 3, 1]
-island = [3, 1, 12, 3, 5, 1, 1, 20, 1]
+# island = [3, 1, 4, 3, 5, 1, 1, 5, 1]
+# island = [3, 1, 12, 3, 5, 1, 1, 20, 1]
+
 
 # мое решение
 def my_island_filler(island):
@@ -32,7 +34,8 @@ def my_island_filler(island):
 
     # наполняем справа налево до вершины
     index_max = len(island) - 1
-    for index in reversed(range(top_index, len(island))):
+    # for index in reversed(range(top_index, len(island))):
+    for index in range(len(island)-1, top_index, -1):
         if island[index_max] <= island[index]:
             index_max = index
             continue
@@ -46,3 +49,28 @@ def my_island_filler(island):
 
 
 my_island_filler(island)
+
+
+# Его решение. по сути тоже самое
+
+def isleflood(h):
+    maxpos = 0
+    for i in range(len(h)):
+        if h[i] > h[maxpos]:
+            maxpos = i
+    print(f'{maxpos=}')
+    ans = 0
+    nowm = 0
+    for i in range(maxpos):
+        if h[i] > nowm:
+            nowm = h[i]
+        ans += nowm - h[i]
+    nowm = 0
+    for i in range(len(h) - 1, maxpos, -1):
+        if h[i] > nowm:
+            nowm = h[i]
+        ans += nowm - h[i]
+    print(ans)
+
+
+isleflood(island)
