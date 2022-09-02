@@ -1,5 +1,8 @@
-data = 'AAAABBBCCXYZDDDDEEEFFFAAAAAABBBBBBBBBBBBBBBBBBBBF'
+#input String
+str = "Pythonpool"
 
-print(f'{data[-1]=}')
-print(f'{data[1:]=}')
+#apply exec() method
+exec("%s = %d" % (str, 5000))
 
+#print string
+print("output : ", Pythonpool)

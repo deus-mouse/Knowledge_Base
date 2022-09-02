@@ -121,3 +121,39 @@ print(get_time_track_8)
 
 
 # Писать и отлаживать декораторы с параметрами сложно. Но увлекательно.
+
+
+class Geeks:
+    def __init__(self):
+        self._age = 0
+        self._age2 = 0
+
+    # using property decorator
+    # a getter function
+    @property
+    def age(self):
+        print("1 getter method called")
+        return self._age
+
+    @property
+    def age2(self):
+        print("2 getter method called")
+        return self._age2
+
+    # a setter function
+    @age.setter
+    def age(self, a):
+        if (a < 18):
+            raise ValueError("Sorry you age is below eligibility criteria")
+        print("setter method called")
+        self._age = a
+
+
+mark = Geeks()
+print('---------------')
+mark.age = 19
+print('---------------')
+print('---------------')
+print(f'{mark.age=}')
+print('---------------')
+print(f'{mark.age2=}')
