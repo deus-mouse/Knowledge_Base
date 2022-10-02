@@ -16,7 +16,7 @@ M - этажей в подъезде
 
 """
 
-
+# сколько квартир на одном этаже
 def count_appartments_on_floor(k, n, p, M):
     total_floors = (p - 1) * M + n
     res = k // total_floors
@@ -29,9 +29,9 @@ def foo(k_1, k_2, n_2, p_2, M):
     print(f'total_floors = {total_floors}')
 
 
-    p_1 = (total_floors // M) if (total_floors % M == 0) else (total_floors // M + 1)
-    n_1 = total_floors % M if total_floors > M else total_floors
-    return p_1, n_1
+    Р1 = (total_floors // M) if (total_floors % M == 0) else (total_floors // M + 1)
+    N1 = total_floors % M if total_floors > M else total_floors
+    return Р1, N1
 
 
 print(f'{foo(16, 43, 2, 3, 4)=}')
