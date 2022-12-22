@@ -1,26 +1,16 @@
 
 
-print(10%3)
+class Car:
+    def __init__(self, color, mileage, automatic):
+        self.color = color
+        self.mileage = mileage
+        self.automatic = automatic
 
 
-l = [1, 2, 3, 4, 5, 4, 3, 2, 1]
-l_2 = [1, 2, 1, 2, 2, 1, 2, 1]
-print(f'{len(l)/2=}')
-print(f'{type(len(l)/2)=}')
-print(f'{int(len(l)/2)=}')
+car1 = Car('красный', 3812.4, True)
+car2 = Car('синий', 40231.0, False)
 
-print(f'{len(l_2)/2=}')
-print(f'{type(len(l_2)/2)=}')
-print(f'{int(len(l_2)/2)=}')
+car2.windshield = 'треснутое'
 
 
-def foo(payload):
-    center = len(payload) // 2 if len(payload) % 2 else (len(payload) // 2 - 1)
-    print(f'{center=}')
-
-
-foo(l)
-foo(l_2)
-
-for i in range(1):
-    print(f'{i=}')
+print(car2.windshield)
