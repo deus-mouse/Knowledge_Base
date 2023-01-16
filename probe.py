@@ -1,19 +1,14 @@
-bri = set(['Бразилия', 'Россия', 'Индия'])
+my_items = ['a', 'b', 'c']
 
-print(bri)
+i = 0
+while i < len(my_items):
+    print(my_items[i])
+    i += 1
 
-
-class Car:
-    def __init__(self, color, mileage, automatic):
-        self.color = color
-        self.mileage = mileage
-        self.automatic = automatic
-
-
-car1 = Car('красный', 3812.4, True)
-car2 = Car('синий', 40231.0, False)
-
-car2.windshield = 'треснутое'
+for i in my_items:
+    print(i)
 
 
-print(car2.windshield)
+print(f'{enumerate(my_items)=}')
+for i, item in enumerate(my_items):
+    print(f'{i}: {item}')
