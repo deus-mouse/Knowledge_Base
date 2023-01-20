@@ -20,3 +20,6 @@ my_set = {x * x for x in range(-9, 10)}
 # включение в словарь:
 my_dict = {x: x * x for x in range(5)}
 # {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}
+
+
+(print())
