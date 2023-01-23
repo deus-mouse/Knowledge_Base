@@ -20,6 +20,7 @@ q.put('программировать')
 
 print(q)
 # <queue.Queue object at 0x1070f5b38>
+print(len(q))
 
 q.get()
 # 'есть'
@@ -35,3 +36,4 @@ q.get_nowait()
 
 q.get()
 # Блокирует / ожидает бесконечно...
+
