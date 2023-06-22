@@ -41,7 +41,7 @@ def time_track_2(func):
         started_at = time.time()
         result = func(*args)
         ended_at = time.time()
-        elapsed = round(ended_at - started_at, 4)
+        elapsed = round(ended_at - started_at, 2)
         print(f'Elapsed 3 = {elapsed}')
         return result
     return surrogate
@@ -150,6 +150,7 @@ class Geeks:
 
 
 mark = Geeks()
+
 print('---------------')
 mark.age = 19
 print('---------------')

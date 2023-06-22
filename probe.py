@@ -1,5 +1,10 @@
-my_items = ['a', 'b', 'c']
 
-f = [item * 3 for item in my_items]
+batches = [20, 22]
 
-print(f)
+batch = next(b for b in sorted(batches) if True)
+print(batch)
+
+
+
+print(batch)
+print(batch)

@@ -30,5 +30,13 @@ from collections import deque
 
 my_deque = deque([1, 2, 3])
 my_deque.appendleft(5)
-my_deque.popleft()
 print(f'{my_deque=}')
+my_deque.append(5)
+print(f'{my_deque=}')
+
+my_deque.popleft()
+my_deque.pop()
+print(f'{my_deque=}')
+
+
+

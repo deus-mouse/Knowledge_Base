@@ -16,21 +16,23 @@ M - этажей в подъезде
 
 """
 
+# нужно представить, что все подъезды сложены друг на друга. т.е. у нас большая башня
+
+
 # сколько квартир на одном этаже
 def count_appartments_on_floor(k, n, p, M):
-    total_floors = (p - 1) * M + n
+    total_floors = (p - 1) * M + n  # все полные подъезды * кол-во этажей + известный этаж
     res = k // total_floors
     print(f'count_appartments_on_floor = {res}')
     return res
 
 
 def foo(k_1, k_2, n_2, p_2, M):
-    total_floors = k_1 // count_appartments_on_floor(k_2, n_2, p_2, M)
-    print(f'total_floors = {total_floors}')
+    floor = k_1 // count_appartments_on_floor(k_2, n_2, p_2, M)  # этаж в башне
+    print(f'floor = {floor}')
 
-
-    Р1 = (total_floors // M) if (total_floors % M == 0) else (total_floors // M + 1)
-    N1 = total_floors % M if total_floors > M else total_floors
+    Р1 = (floor // M) if (floor % M == 0) else (floor // M + 1)
+    N1 = floor % M if floor > M else floor
     return Р1, N1
 
 

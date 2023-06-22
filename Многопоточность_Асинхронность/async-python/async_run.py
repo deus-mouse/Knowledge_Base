@@ -3,8 +3,8 @@ import aiohttp
 import os
 import time
 # To work with the .env file
-from dotenv import load_dotenv
-load_dotenv()
+# from dotenv import load_dotenv
+# load_dotenv()
 
 api_key = os.getenv('ALPHAVANTAGE_API_KEY')
 url = 'https://www.alphavantage.co/query?function=OVERVIEW&symbol={}&apikey={}'

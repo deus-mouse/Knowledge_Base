@@ -10,3 +10,6 @@ order['four'] = 4
 
 print(f'{standart_dict=}')
 print(f'{order=}')
+
+order['two'] = 2
+print(f'{order=}')
