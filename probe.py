@@ -1,10 +1,5 @@
+i = 1
 
-batches = [20, 22]
+i+=1
 
-batch = next(b for b in sorted(batches) if True)
-print(batch)
-
-
-
-print(batch)
-print(batch)
+print(i)
