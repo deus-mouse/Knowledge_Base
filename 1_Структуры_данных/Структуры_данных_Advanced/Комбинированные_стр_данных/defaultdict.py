@@ -17,4 +17,5 @@ def greet(name):
     return 'hi ' + name
 
 greeter = defaultdict(lambda: greet)
-print(f'{greeter["default"]("Roman")}')
+print(f'{greeter["default"]("Roman")=}')
+print(f'{greeter=}')

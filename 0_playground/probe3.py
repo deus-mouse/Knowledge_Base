@@ -1,4 +1,4 @@
-
+from collections import defaultdict
 
 s = '1 1 4 2 3 0 2 3'
 input = [2, -4]
@@ -41,13 +41,45 @@ class ABC:
 ABC.b()
 ABC.c()
 # print(ABC.__some_private)
-cl = ABC()
-cl.a()
-print(cl.some)
-cl.b()
-print(cl.some)
-cl.c()
+# cl = ABC()
+# cl.a()
+# print(cl.some)
+# cl.b()
+# print(cl.some)
+# cl.c()
+#
+# print(cl.some)
+# print(cl._ABC__some_private)
 
-print(cl.some)
-print(cl._ABC__some_private)
 
+class Stat:
+
+    def
+    __stat = defaultdict(int)
+
+    @classmethod
+    def update(cls, prompt):
+        cls.__stat[prompt] += 1
+
+    @classmethod
+    def dump(cls):
+        print(f'{cls.__stat=}')
+
+
+Stat.dump()
+if 'c' in Stat.__stat:
+    print('1 ++++')
+
+
+Stat.update('a')
+Stat.dump()
+Stat.update('b')
+Stat.update('c')
+Stat.update('c')
+Stat.dump()
+
+if 'c' in Stat.__stat:
+    print('2 ++++')
+
+# Stat.__stat = {'sss': 'sss'}
+Stat.dump()
