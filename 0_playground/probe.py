@@ -2,80 +2,87 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 
 
+class ChairInterface(ABC):
+    @abstractmethod
+    def delivered(self):
+        pass
+
+
+class TableInterface(ABC):
+    @abstractmethod
+    def delivered(self):
+        pass
+
+
+class IkeaChair(ChairInterface):
+    def delivered(self):
+        print('IkeaChair delivered')
+
+
+class IkeaTable(TableInterface):
+    def delivered(self):
+        print('IkeaTable delivered')
+
+
+class GlobalChair(ChairInterface):
+    def delivered(self):
+        print('GlobalChair delivered')
+
+
+class GlobalTable(TableInterface):
+    def delivered(self):
+        print('GlobalTable delivered')
+
+
 class AbstractFactory(ABC):
     @abstractmethod
-    def create_product_a(self) -> AbstractProductA:
+    def create_chair(self) -> ChairInterface:
         pass
 
     @abstractmethod
-    def create_product_b(self) -> AbstractProductB:
+    def create_table(self) -> TableInterface:
         pass
 
 
-class Factory1(AbstractFactory):
-    def create_product_a(self) -> AbstractProductA:
-        return ProductA1()
+class IkeaFactory:
+    def create_chair(self) -> ChairInterface:
+        return IkeaChair()
 
-    def create_product_b(self) -> AbstractProductB:
-        return ProductB1()
-
-
-class Factory2(AbstractFactory):
-    def create_product_a(self) -> AbstractProductA:
-        return ProductA2()
-
-    def create_product_b(self) -> AbstractProductB:
-        return ProductB2()
+    def create_table(self) -> TableInterface:
+        return IkeaTable()
 
 
-class AbstractProductA(ABC):
-    @abstractmethod
-    def run_a(self):
-        pass
+class GlobalFactory:
+    def create_chair(self) -> ChairInterface:
+        return GlobalChair()
+
+    def create_table(self) -> TableInterface:
+        return GlobalTable()
 
 
-class ProductA1(AbstractProductA):
-    def run_a(self):
-        print(f'run ProductA1')
+class Client:
+    def __init__(self, factory):
+        self.factory = factory
+
+    def supply(self):
+        if self.factory == 'Ikea':
+            self.FACTORY = IkeaFactory()
+        elif self.factory == 'Global':
+            self.FACTORY = GlobalFactory()
+
+        chair = self.FACTORY.create_chair()
+        table = self.FACTORY.create_table()
+
+        chair.delivered()
+        table.delivered()
 
 
-class ProductA2(AbstractProductA):
-    def run_a(self):
-        print(f'run ProductA2')
+def client_code(factory):
+    client = Client(factory)
+    client.supply()
 
 
-class AbstractProductB(ABC):
-    @abstractmethod
-    def run_b(self):
-        pass
+client_code('Ikea')
+client_code('Global')
 
 
-class ProductB1(AbstractProductB):
-    def run_b(self):
-        print(f'RUN ProductB1')
-
-
-class ProductB2(AbstractProductB):
-    def run_b(self):
-        print(f'RUN ProductB2')
-
-
-def client_code(factory: AbstractFactory) -> None:
-    product_a = factory.create_product_a()
-    product_b = factory.create_product_b()
-
-    product_a.run_a()
-    product_b.run_b()
-
-
-if __name__ == "__main__":
-    """
-    Клиентский код может работать с любым конкретным классом фабрики.
-    """
-    print("Client: Testing client code with the first factory type:")
-    client_code(Factory1())
-
-    print("\n")
-
-    print("Client: Testing the same client code with the second factory type:")
-    client_code(Factory2())
