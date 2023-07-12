@@ -12,37 +12,37 @@ class AbstractUniversity(ABC):
 
 
 class ScienceUniversity(AbstractUniversity):
-    def create(self) -> StudentInterface:
+    def create(self) -> UnitInterface:
         return Scientist()
 
 
 class HeroUniversity(AbstractUniversity):
-    def create(self) -> StudentInterface:
+    def create(self) -> UnitInterface:
         return Hero()
 
 
 class MilitaryUniversity(AbstractUniversity):
-    def create(self) -> StudentInterface:
+    def create(self) -> UnitInterface:
         return Soldier()
 
 
-class StudentInterface(ABC):
+class UnitInterface(ABC):
     @abstractmethod
     def save_world(self):
         pass
 
 
-class Scientist(StudentInterface):
+class Scientist(UnitInterface):
     def save_world(self):
         print('Sciencist saved the world')
 
 
-class Hero(StudentInterface):
+class Hero(UnitInterface):
     def save_world(self):
         print('Hero saved the world')
 
 
-class Soldier(StudentInterface):
+class Soldier(UnitInterface):
     def save_world(self):
         print('Soldier saved the world')
 
