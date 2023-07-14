@@ -2,65 +2,64 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 
 
-
 class AbstractFactory(ABC):
     @abstractmethod
-    def create_product_a(self) -> AbstractProduct:
+    def create_product_a(self) -> ProductInterface:
         pass
 
     @abstractmethod
-    def create_product_b(self) -> AbstractProduct:
+    def create_product_b(self) -> ProductInterface:
         pass
 
 
-class Factory1(AbstractFactory):
-    def create_product_a(self) -> AbstractProduct:
-        return ProductA1()
+class ConcreteFactory1(AbstractFactory):
+    def create_product_a(self) -> ProductInterface:
+        return ConcreteProductA1()
 
-    def create_product_b(self) -> AbstractProduct:
-        return ProductB1()
-
-
-class Factory2(AbstractFactory):
-    def create_product_a(self) -> AbstractProduct:
-        return ProductA2()
-
-    def create_product_b(self) -> AbstractProduct:
-        return ProductB2()
+    def create_product_b(self) -> ProductInterface:
+        return ConcreteProductB1()
 
 
-class AbstractProduct(ABC):
+class ConcreteFactory2(AbstractFactory):
+    def create_product_a(self) -> ProductInterface:
+        return ConcreteProductA2()
+
+    def create_product_b(self) -> ProductInterface:
+        return ConcreteProductB2()
+
+
+class ProductInterface(ABC):
     @abstractmethod
     def run(self):
         pass
 
 
-class ProductA1(AbstractProduct):
+class ConcreteProductA1(ProductInterface):
     def run(self):
-        print('ProductA1')
+        print(f'run {self.__class__.__name__}')
 
 
-class ProductA2(AbstractProduct):
+class ConcreteProductB1(ProductInterface):
     def run(self):
-        print('ProductA2')
+        print(f'run {self.__class__.__name__}')
 
 
-class ProductB1(AbstractProduct):
+class ConcreteProductA2(ProductInterface):
     def run(self):
-        print('ProductB1')
+        print(f'run {self.__class__.__name__}')
 
 
-class ProductB2(AbstractProduct):
+class ConcreteProductB2(ProductInterface):
     def run(self):
-        print('ProductB2')
+        print(f'run {self.__class__.__name__}')
 
 
 def client_code(factory: AbstractFactory):
     product_a = factory.create_product_a()
-    product_b = factory.create_product_b()
-
     product_a.run()
+    product_b = factory.create_product_b()
     product_b.run()
 
-client_code(Factory1())
-client_code(Factory2())
+
+client_code(ConcreteFactory1())
+client_code(ConcreteFactory2())
