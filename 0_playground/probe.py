@@ -1,102 +1,92 @@
-from __future__ import annotations
 from abc import ABC, abstractmethod
-from typing import Any
 
 
 class Builder(ABC):
+    def __init__(self):
+        pass
+
     @property
     @abstractmethod
-    def product(self) -> None:
+    def product(self):
         pass
 
     @abstractmethod
-    def produce_part_a(self) -> None:
+    def produce_part_a(self):
         pass
 
     @abstractmethod
-    def produce_part_b(self) -> None:
+    def produce_part_b(self):
         pass
 
     @abstractmethod
-    def produce_part_c(self) -> None:
+    def produce_part_c(self):
         pass
 
 
 class ConcreteBuilder1(Builder):
-    def __init__(self) -> None:
+    def __init__(self):
         self.reset()
 
-    def reset(self) -> None:
+    def reset(self):
         self._product = Product1()
 
     @property
-    def product(self) -> Product1:
+    def product(self):
         product = self._product
         self.reset()
         return product
 
-    def produce_part_a(self) -> None:
-        self._product.add("PartA1")
+    def produce_part_a(self):
+        self._product.add('Part1')
 
-    def produce_part_b(self) -> None:
-        self._product.add("PartB1")
+    def produce_part_b(self):
+        self._product.add('Part2')
 
-    def produce_part_c(self) -> None:
-        self._product.add("PartC1")
-
-
-class Product1():
-    def __init__(self) -> None:
-        self.parts = []
-
-    def add(self, part: Any) -> None:
-        self.parts.append(part)
-
-    def list_parts(self) -> None:
-        print(f"Product parts: {', '.join(self.parts)}", end="")
+    def produce_part_c(self):
+        self._product.add('Part3')
 
 
 class Director:
-    def __init__(self) -> None:
-        self._builder = None
+    def __init__(self):
+        self._builder: Builder = None
 
     @property
-    def builder(self) -> Builder:
+    def builder(self):
         return self._builder
 
     @builder.setter
-    def builder(self, builder: Builder) -> None:
+    def builder(self, builder: Builder):
         self._builder = builder
 
-    def build_minimal_viable_product(self) -> None:
-        self.builder.produce_part_a()
+    def produce_mvp_product(self):
+        self._builder.produce_part_a()
 
-    def build_full_featured_product(self) -> None:
-        self.builder.produce_part_a()
-        self.builder.produce_part_b()
-        self.builder.produce_part_c()
+    def produce_complete_product(self):
+        self._builder.produce_part_a()
+        self._builder.produce_part_b()
+        self._builder.produce_part_c()
 
 
+class Product1:
+    def __init__(self):
+        self.parts = []
 
-if __name__ == "__main__":
+    def add(self, part):
+        self.parts.append(part)
 
+    def list_parts(self):
+        print(f'{self.parts=}')
+
+
+if __name__ == '__main__':
     director = Director()
     builder = ConcreteBuilder1()
     director.builder = builder
 
-    print("Standard basic product: ")
-    director.build_minimal_viable_product()
+    director.produce_mvp_product()
     builder.product.list_parts()
 
-    print("\n")
-
-    print("Standard full featured product: ")
-    director.build_full_featured_product()
+    director.produce_complete_product()
     builder.product.list_parts()
 
-    print("\n")
 
-    print("Custom product: ")
-    builder.produce_part_a()
-    builder.produce_part_b()
-    builder.product.list_parts()

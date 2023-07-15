@@ -75,7 +75,7 @@ class ConcreteBuilder1(Builder):
         self._product.add("PartC1")
 
 
-class Product1():
+class Product1:
     """
     Имеет смысл использовать паттерн Строитель только тогда, когда ваши продукты
     достаточно сложны и требуют обширной конфигурации.

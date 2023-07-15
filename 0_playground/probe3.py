@@ -1,85 +1,94 @@
-from collections import defaultdict
-
-s = '1 1 4 2 3 0 2 3'
-input = [2, -4]
-# coards = [[x, y] for x, y in s.split(' ', 2)]
-new_s = s.replace(' ', '')
-# coards = [[y, x] for x, y in [new_s.pop(), new_s.pop()]]
-# # print([new_s.pop(), new_s.pop()])
-#
-# print(new_s)
-# # print(coards)
-# #
-#
-# coards = []
-#
-# print(coards)
-#
-#
-# print(77 % 11)
-# print(54 // 11)
-
-class ABC:
-    some = 'some'
-    __some_private = '_some_private'
-
-    def a(self):
-        some = 'a_some'
-        print('a')
-
-    @classmethod
-    def b(cls):
-        cls.some = 'b_some'
-        print('b')
-
-    @staticmethod
-    def c():
-        some = 'c_some'
-        print('c')
-
-# print(ABC.a())
-ABC.b()
-ABC.c()
-# print(ABC.__some_private)
-# cl = ABC()
-# cl.a()
-# print(cl.some)
-# cl.b()
-# print(cl.some)
-# cl.c()
-#
-# print(cl.some)
-# print(cl._ABC__some_private)
+from __future__ import annotations
+from abc import ABC, abstractmethod
 
 
-class Stat:
 
-    def
-    __stat = defaultdict(int)
+class Builder(ABC):
+    @property
+    @abstractmethod
+    def product(self):
+        pass
 
-    @classmethod
-    def update(cls, prompt):
-        cls.__stat[prompt] += 1
+    @abstractmethod
+    def produce_part_a(self):
+        pass
 
-    @classmethod
-    def dump(cls):
-        print(f'{cls.__stat=}')
+    @abstractmethod
+    def produce_part_b(self):
+        pass
+
+    @abstractmethod
+    def produce_part_c(self):
+        pass
 
 
-Stat.dump()
-if 'c' in Stat.__stat:
-    print('1 ++++')
+class ConcreteBuilder1(Builder):
+    def __init__(self):
+        self.reset()
+
+    def reset(self):
+        print(f'reset')
+        self._product: Product1 = Product1()
+
+    @property
+    def product(self):
+        product: Product1 = self._product
+        self.reset()
+        return product
+
+    def produce_part_a(self):
+        self._product.add('Part_1')
+
+    def produce_part_b(self):
+        self._product.add('Part_2')
+
+    def produce_part_c(self):
+        self._product.add('Part_3')
 
 
-Stat.update('a')
-Stat.dump()
-Stat.update('b')
-Stat.update('c')
-Stat.update('c')
-Stat.dump()
+class Product1:
+    def __init__(self):
+        self.parts = []
 
-if 'c' in Stat.__stat:
-    print('2 ++++')
+    def add(self, part):
+        self.parts.append(part)
 
-# Stat.__stat = {'sss': 'sss'}
-Stat.dump()
+    def list_parts(self):
+        print(f'{self.parts=}')
+
+
+class Director:
+    def __init__(self):
+        self._builder: Builder = None
+
+    @property
+    def builder(self):
+        return self._builder
+
+    @builder.setter
+    def builder(self, builder: Builder):
+        self._builder = builder
+
+    def produce_mvp_product(self):
+        self._builder.produce_part_a()
+
+    def produce_full_product(self):
+        self._builder.produce_part_a()
+        self._builder.produce_part_b()
+        self._builder.produce_part_c()
+
+
+
+if __name__ == '__main__':
+    director = Director()
+    builder = ConcreteBuilder1()
+    director.builder = builder
+
+    director.produce_mvp_product()
+    director.builder.product.list_parts()
+
+    director.produce_full_product()
+    director.builder.product.list_parts()
+
+
+
