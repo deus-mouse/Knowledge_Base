@@ -6,7 +6,7 @@ https://www.youtube.com/watch?v=jaICAx6U3VA
 from abc import ABC, abstractmethod
 from typing import List
 import copy
-from creational.builder_with_director import (PizzaSauceType,
+from builder_with_director import (PizzaSauceType,
                                               PizzaBase,
                                               PizzaDoughDepth,
                                               PizzaDoughType,
@@ -49,6 +49,7 @@ class Pizza(IPrototype):
 
     def clone(self):
         topping = self.topping.copy() if self.topping is not None else None
+        print(f'{type(self)=}')
         return type(self)(
             self.name,
             self.dough,
