@@ -1,24 +1,34 @@
+import inspect
 
 
-
-class SingletonMeta(type):
-
-    _instances = {}
-
-    def __call__(self, *args, **kwargs):
-        if self not in self._instances:
-            instance = super().__call__(*args, **kwargs)
-            self._instances[self] = instance
-        return self._instances[self]
+class Target:
+    def request(self):
+        return f'{inspect.stack()[0][3]=}'
 
 
-class Singleton(metaclass=SingletonMeta):
-    def some_business_logic(self):
-        pass
+class Adaptee:
+    def specific_request(self):
+        return f'{inspect.stack()[0][3]=}'
+
+
+class Adapter(Target):
+    def __init__(self, adaptee):
+        self.adaptee = adaptee
+
+    def request(self):
+        return f'{inspect.stack()[0][3]=} | {self.adaptee.specific_request()=}'
+
+
+def client_code(target: Target):
+    print(f'{target.request()=}')
 
 
 if __name__ == '__main__':
-    s1 = Singleton()
-    s2 = Singleton()
+    target = Target()
+    print(f'{target.request()=}')
 
-    print(f'{id(s1) == id(s2) = }')
+    adaptee = Adaptee()
+    print(f'{adaptee.specific_request()=}')
+
+    adapter = Adapter(adaptee)
+    print(f'{adapter.request()=}')
