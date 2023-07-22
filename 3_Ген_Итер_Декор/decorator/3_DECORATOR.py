@@ -10,6 +10,7 @@ def calculator(*args):
 # и нам надо засечь время выполнения функции
 
 import time
+
 started_at = time.time()
 result = calculator(2134, 7322, 9586, 8584)
 print(result)

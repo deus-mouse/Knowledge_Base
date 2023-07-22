@@ -1,34 +1,51 @@
-import inspect
+from __future__ import annotations
+from abc import ABC, abstractmethod
 
 
-class Target:
-    def request(self):
-        return f'{inspect.stack()[0][3]=}'
+class Abstraction(ABC):
+    def __init__(self, implementation: Implementation):
+        self.implementation = implementation
+
+    def operation(self):
+        print(f'Base: {self.implementation.implementation_operation()=}')
 
 
-class Adaptee:
-    def specific_request(self):
-        return f'{inspect.stack()[0][3]=}'
+class ExtendedAbstraction(Abstraction):
+    def operation(self):
+        print(f'Extended: {self.implementation.implementation_operation()=}')
 
 
-class Adapter(Target):
-    def __init__(self, adaptee):
-        self.adaptee = adaptee
-
-    def request(self):
-        return f'{inspect.stack()[0][3]=} | {self.adaptee.specific_request()=}'
+class Implementation(ABC):
+    @abstractmethod
+    def implementation_operation(self):
+        pass
 
 
-def client_code(target: Target):
-    print(f'{target.request()=}')
+class ConcreteImplementationA(Implementation):
+    def implementation_operation(self):
+        print(f'ConcreteImplementationA')
+
+
+class ConcreteImplementationB(Implementation):
+    def implementation_operation(self):
+        print(f'ConcreteImplementationB')
+
+
+def client_code(abstraction: Abstraction):
+    abstraction.operation()
 
 
 if __name__ == '__main__':
-    target = Target()
-    print(f'{target.request()=}')
 
-    adaptee = Adaptee()
-    print(f'{adaptee.specific_request()=}')
+    implementation = ConcreteImplementationA()
+    abstraction = Abstraction(implementation)
+    client_code(abstraction)
 
-    adapter = Adapter(adaptee)
-    print(f'{adapter.request()=}')
+    print('===============')
+
+    implementation = ConcreteImplementationB()
+    abstraction = ExtendedAbstraction(implementation)
+    client_code(abstraction)
+
+
+
