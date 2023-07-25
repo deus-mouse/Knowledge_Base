@@ -1,51 +1,69 @@
-from __future__ import annotations
-from abc import ABC, abstractmethod
+import inspect
+import threading
+
+nlu_results = []
 
 
-class Abstraction(ABC):
-    def __init__(self, implementation: Implementation):
-        self.implementation = implementation
-
-    def operation(self):
-        print(f'Base: {self.implementation.implementation_operation()=}')
-
-
-class ExtendedAbstraction(Abstraction):
-    def operation(self):
-        print(f'Extended: {self.implementation.implementation_operation()=}')
+def logger(data):
+    '''usage: logger(f'{MSISDN=}')'''
+    func = inspect.stack()[1][3]
+    if func == '<module>':
+        func = ''
+    print(f'+++ {func}: {data}')
 
 
-class Implementation(ABC):
-    @abstractmethod
-    def implementation_operation(self):
-        pass
+def main_nlu(r):
+    if r:
+        payload = {
+            'input': r,
+            'regex': r,
+            'nlu': {},
+        }
+
+        logger('nlu response:')
+        r_nlu = None
+        try:
+            # 1st option how we can realize reserve nlu recognition
+            r_nlu = 'r_nlu'  # <- nlu
+
+            # 2nd option
+            # r.set_nlu_ver('3.0')
+            # r_nlu = nlu.extract(r.utterance())
+
+            if r_nlu:
+                intents = ['r_nlu._intents']
+
+                # removing patterns from r_nlu result
+                if intents:
+                    payload.update({'nlu': intents})
+
+        except Exception as e:
+            logger('reserve_recognition, error message: ', e)
+
+        nlu_results.append(payload)
+        # return func(r if (r.has_intents() or r.has_entities() or not r_nlu) else r_nlu)
+        return r_nlu
 
 
-class ConcreteImplementationA(Implementation):
-    def implementation_operation(self):
-        print(f'ConcreteImplementationA')
+def nlu(func):
+    '''decorator for additional recognition by regex + nlu'''
+
+    def surrogate(r):  # r <- regex
+        nlu_thread = threading.Thread(name='nlu_thread', target=main_nlu, args=(r,))
+        nlu_thread.start()
+        if r and r == 'R':
+            return func(r)
+        else:
+            nlu_thread.join()
+            return func(nlu_thread.value)
+
+    return surrogate
 
 
-class ConcreteImplementationB(Implementation):
-    def implementation_operation(self):
-        print(f'ConcreteImplementationB')
+@nlu
+def logic(r):
+    logger(f'{r=}')
 
 
-def client_code(abstraction: Abstraction):
-    abstraction.operation()
-
-
-if __name__ == '__main__':
-
-    implementation = ConcreteImplementationA()
-    abstraction = Abstraction(implementation)
-    client_code(abstraction)
-
-    print('===============')
-
-    implementation = ConcreteImplementationB()
-    abstraction = ExtendedAbstraction(implementation)
-    client_code(abstraction)
-
-
-
+logic(r='R')
+logic(r='NLU')
