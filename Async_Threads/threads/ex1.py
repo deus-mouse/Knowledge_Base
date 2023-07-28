@@ -34,7 +34,7 @@ if __name__ == '__main__':
     condition = threading.Condition()
     cs1 = threading.Thread(name='consumer1', target=consumer, args=(condition,))
     # cs2 = threading.Thread(name='consumer2', target=consumer, args=(condition,))
-    # pd = threading.Thread(name='producer', target=producer, args=(condition,))
+    pd = threading.Thread(name='producer', target=producer, args=(condition,))
 
     cs1.start()
     # cs2.start()

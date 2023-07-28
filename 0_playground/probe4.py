@@ -1,15 +1,37 @@
 
 
-f = ''
+x = 2
+y = 6
 
-if f:
-    print('gggg')
+try:
+    x = int(x)
+    y = int(y)
+
+    res = x/y
+
+except ZeroDivisionError as z:
+    res = z
+except ValueError as v:
+    res = v
+else:
+    print('ELSE')
+
+
+print(res)
 
 
 
-first = b'Roman'
-last = b'Smulsky'
+def foo():
+    counter = 0
+    try:
+        counter += 1
+        # return counter
+    except Exception as ex:
+        print('except')
+    else:
+        print('else')
+    finally:
+        print('finally')
 
-result = ' '.join([first, last])
 
-print(f'{result=}')
+print(foo())
