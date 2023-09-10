@@ -1,3 +1,6 @@
+# https://www.techiedelight.com/ru/greedy-coloring-graph/
+
+
 # Класс для представления graphического объекта
 class Graph:
     def __init__(self, edges, n):
