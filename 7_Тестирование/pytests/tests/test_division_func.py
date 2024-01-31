@@ -3,8 +3,12 @@ https://www.youtube.com/watch?v=1HtEPEn4-LY
 '''
 
 
-from utils import division
+# from ..utils import division
 import pytest
+
+
+def division(a, b):
+    return a / b
 
 @pytest.mark.parametrize('a, b, expected_result',
                          [(10, 2, 5),
