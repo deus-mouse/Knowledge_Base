@@ -15,7 +15,7 @@ class Solution:
         result = 0
         for num in nums:
             print(f'{result=}, {num=}')
-            result ^= num  # XOR
+            result ^= num  # XOR, по сути это сумма всех чисел. только при вхождении того же элемента, он уже будет вычтен
             print(f'-> {result=}')
         return result
 
