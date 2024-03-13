@@ -1,12 +1,11 @@
 
 
+s = 0
 
-r = 5
-c = 0
+if s:
+    print(s)
 
-box_index = (r // 3) * 3 + c // 3
 
-print(box_index)
-print(r // 3)
-print((r // 3) * 3)
-print(c // 3)
+
+s = "3.14159"
+print(float(s))

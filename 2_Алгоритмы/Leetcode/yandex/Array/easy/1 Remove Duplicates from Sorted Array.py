@@ -6,8 +6,8 @@ Change the array nums such that the first k elements of nums contain the unique 
 Return k.
 '''
 
-nums = [0,0,1,1,1,2,2,3,3,4]
-print(f'{len(nums)=}')
+nums = [1,1,2]
+# nums = [0,0,1,1,1,2,2,3,3,4]
 
 
 class Solution(object):
@@ -25,8 +25,19 @@ class Solution(object):
         # return f'{k}, nums = {nums}'
         return k
 
+    def removeDuplicates_gpt(self, nums):
+        if not nums:
+            return 0
+        k = 1  # Since the first element is always unique
+        for i in range(1, len(nums)):
+            if nums[i] != nums[i-1]:
+                nums[k] = nums[i]
+                k += 1
+        return k, nums[:k] + ['_'] * (len(nums) - k)
 
-result = Solution.removeDuplicates(Solution, nums)
+
+# result = Solution.removeDuplicates(Solution, nums)
+result = Solution.removeDuplicates_gpt(Solution, nums)
 print(result)
 
 

@@ -9,13 +9,6 @@ digits = [1,2,3]  # [1,2,4]
 
 
 class Solution:
-
-    def plusOne(self, digits: List[int]) -> List[int]:
-        res = ''.join([str(num) for num in digits])
-        res = int(res) + 1
-        res = [int(num) for num in str(res)]
-        return res
-
     def plusOne_gpt(self, digits: List[int]) -> List[int]:
         # Reverse the digits for easier manipulation
         digits = digits[::-1]
@@ -32,6 +25,14 @@ class Solution:
             digits.append(1)
         # Reverse back before returning
         return digits[::-1]
+    
+    def plusOne(self, digits: List[int]) -> List[int]:
+        res = ''.join([str(num) for num in digits])
+        res = int(res) + 1
+        res = [int(num) for num in str(res)]
+        return res
+
+
 
 
 s = Solution()
