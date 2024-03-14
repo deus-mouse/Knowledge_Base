@@ -13,24 +13,26 @@ class ListNode:
 
 class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        if not head or not head.next:
+            return True
 
-        slow = fast = head
-        # где середина?
+        slow, fast = head, head
+        # Находим середину списка
         while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
 
-        # переворот второй половины
+        # Переворачиваем вторую половину списка
         prev = None
         while slow:
-            next_node = slow.next
+            temp = slow.next
             slow.next = prev
             prev = slow
-            slow = next_node
+            slow = temp
 
+        # Сравниваем две половины
         left, right = head, prev
-        while right:
-            print(f'{left.val=}, {right.val=}')
+        while right:  # Достаточно сравнить только вторую половину
             if left.val != right.val:
                 return False
             left = left.next
