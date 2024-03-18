@@ -6,44 +6,39 @@ Given the head of a singly linked list, return true if it is a palindrome or fal
 from typing import Optional
 
 
-class ListNode:
-    def __init__(self, val=0, next=None):
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
         self.val = val
-        self.next = next
+        self.left = left
+        self.right = right
+
 
 class Solution:
-    def isPalindrome(self, head: Optional[ListNode]) -> bool:
-
-        slow = fast = head
-        # где середина?
-        while fast and fast.next:
-            slow = slow.next
-            fast = fast.next.next
-
-        # переворот второй половины
-        prev = None
-        while slow:
-            next_node = slow.next
-            slow.next = prev
-            prev = slow
-            slow = next_node
-
-        left, right = head, prev
-        while right:
-            print(f'{left.val=}, {right.val=}')
-            if left.val != right.val:
+    def isSymmetric(self, root: TreeNode):
+        def isMirror(l: TreeNode, r: TreeNode):
+            if not l and not r:
+                return True
+            if not l or not r:
                 return False
-            left = left.next
-            right = right.next
+            if l.val != r.val:
+                return False
+            return isMirror(l.left, r.right) and isMirror(l.right, r.left)
 
-        return True
+        if not root:
+            return True
+        return isMirror(root.left, root.right)
 
 
-# Создание списка 1->2->3->4->5
-head = ListNode(1, ListNode(2, ListNode(2, ListNode(1))))
+# Пример использования
+
 s = Solution()
-new_head = s.isPalindrome(head)
-print(new_head)
+root1 = TreeNode(1, TreeNode(2, TreeNode(3), TreeNode(4)),
+                 TreeNode(2, TreeNode(4), TreeNode(3)))
+print(s.isSymmetric(root1))  # Выведет: True
+
+root2 = TreeNode(1, TreeNode(2, None, TreeNode(3)),
+                 TreeNode(2, None, TreeNode(3)))
+print(s.isSymmetric(root2))  # Выведет: False
 
 
 
